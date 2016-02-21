@@ -1,5 +1,6 @@
 PratlView = require './pratl-view'
 {CompositeDisposable} = require 'atom'
+Twit = require 'twit' # https://github.com/ttezel/twit
 
 module.exports = Pratl =
   pratlView: null
