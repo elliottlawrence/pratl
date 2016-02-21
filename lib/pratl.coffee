@@ -24,17 +24,17 @@ module.exports = Pratl =
       # Set initial line count
       key = editor.getPath()
       originalLineCount = editor.getLineCount()
-      @editorData.key = originalCount: originalLineCount, count: originalLineCount
+      @editorData[key] = originalCount: originalLineCount, count: originalLineCount
 
       editor.onDidDestroy =>
         delete @editorData[key]
       editor.onDidSave =>
-        oldLineCount = @editorData.key.count
+        oldLineCount = @editorData[key].count
         currentLineCount = editor.getLineCount()
 
         # TODO
 
-        @editorData.count = currentLineCount
+        @editorData[key].count = currentLineCount
 
 
   deactivate: ->
