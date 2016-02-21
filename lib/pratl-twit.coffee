@@ -13,7 +13,7 @@ module.exports =
       emojis = ['😀','😁','🙃','😝','🤗','🤘','🤓','😜','😅','🙌','👍','💩',
         '🖕','👋','🙌','🐳','🍀','🎃','🌝','🍕','🍫','🏋','🏆','🎯','🚔','💡',
         '💙','💯','🆒','🗯','📢']
-      emojiString = _.flatten((_.sample(emojis, 5) for i in [1..8])).join('')
+      emojiString = _.flatten((_.sample(emojis, 5) for i in [1..5])).join('')
 
       friendsText = _.map(_.filter(atom.config.get 'pratl.twitterFriends', (s) -> s != ''),
                            (s) -> "@#{s}"

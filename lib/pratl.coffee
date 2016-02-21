@@ -1,6 +1,7 @@
 PratlView = require './pratl-view'
 {CompositeDisposable} = require 'atom'
 PratlTwit = require './pratl-twit'
+_ = require 'underscore'
 
 module.exports = Pratl =
   pratlView: null
@@ -48,8 +49,17 @@ module.exports = Pratl =
         currentLineCount = editor.getLineCount()
         @editorData[key].count = currentLineCount
 
-        @pratlTwit.tweet('I just wrote ' + (currentLineCount - oldLineCount) +
-          ' lines of code!')
+        linesWritten = currentLineCount - oldLineCount
+
+        texts = ['I just wrote ' + linesWritten + ' lines of code!',
+                 'I wrote ' + linesWritten + ' LOC. What did you do today?',
+                 'Rockstar coder over here!' + linesWritten + ' LOC written. #holla',
+                 'BAM!! ' + linesWritten + ' lines of code written!',
+                 'ATTENTION: I wrote ' + linesWritten + ' lines of code.',
+                 'There are now ' + linesWritten + ' more lines of code in the world thanks to me :)',
+                 'Just wrote some sweet codez! ' + linesWritten + ' lines #yolo #swag #code']
+
+        @pratlTwit.tweet(_.sample(texts,1)[0])
 
   deactivate: ->
     @modalPanel.destroy()
