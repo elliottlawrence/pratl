@@ -18,6 +18,11 @@ module.exports = Pratl =
 
     # Register command that toggles this view
     @subscriptions.add atom.commands.add 'atom-workspace', 'pratl:toggle': => @toggle()
+    @subscriptions.add atom.workspace.observeTextEditors (editor) ->
+      editor.onDidDestroy ->
+        console.log 'closed'
+      editor.onDidSave ->
+        console.log 'saved'
 
   deactivate: ->
     @modalPanel.destroy()
