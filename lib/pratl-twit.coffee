@@ -18,7 +18,7 @@ module.exports =
       friendsText = _.map(_.filter(atom.config.get 'pratl.twitterFriends', (s) -> s != ''),
                            (s) -> "@#{s}"
                       ).join(' ')
-      statusText = "#{text} #{emojiString} #pratl #{statusText}"
+      statusText = "#{text} #{emojiString} #pratl #{friendsText}"
 
       @T.post 'statuses/update', status: statusText, (err, data, response) ->
         console.log(data)
