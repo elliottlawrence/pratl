@@ -27,7 +27,7 @@ module.exports = Pratl =
       @editorData.key = originalCount: originalLineCount, count: originalLineCount
 
       editor.onDidDestroy =>
-        console.log 'closed'
+        delete @editorData[key]
       editor.onDidSave =>
         oldLineCount = @editorData.key.count
         currentLineCount = editor.getLineCount()
