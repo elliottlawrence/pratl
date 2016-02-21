@@ -10,6 +10,7 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-    "twit": "2.2.2"
+    "twit": "2.2.2",
+    "underscore": "1.8.3"
   }
 }

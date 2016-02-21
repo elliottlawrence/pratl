@@ -1,12 +1,13 @@
 PratlView = require './pratl-view'
 {CompositeDisposable} = require 'atom'
-Twit = require 'twit' # https://github.com/ttezel/twit
+PratlTwit = require './pratl-twit'
 
 module.exports = Pratl =
   pratlView: null
   modalPanel: null
   subscriptions: null
   editorData: null
+  pratlTwit: null
 
   activate: (state) ->
     @editorData = {}
@@ -15,12 +16,17 @@ module.exports = Pratl =
       item: @pratlView.getElement(),
       visible: false)
 
+    # Initialize twitter shit
+    @pratlTwit = new PratlTwit
+
     # Events subscribed to in atom's system can be easily cleaned up with a
     # CompositeDisposable
     @subscriptions = new CompositeDisposable
 
     # Register command that toggles this view
+    @subscriptions.add atom.commands.add 'atom-workspace', 'pratl:emergency': => @emergency()
     @subscriptions.add atom.workspace.observeTextEditors (editor) =>
+
       # Set initial line count
       key = editor.getPath()
       originalLineCount = editor.getLineCount()
@@ -31,10 +37,10 @@ module.exports = Pratl =
       editor.onDidSave =>
         oldLineCount = @editorData[key].count
         currentLineCount = editor.getLineCount()
-
-        # TODO
-
         @editorData[key].count = currentLineCount
+
+        @pratlTwit.tweet('I just wrote ' + (currentLineCount - oldLineCount) +
+          ' lines of code!')
 
   deactivate: ->
     @modalPanel.destroy()
@@ -43,3 +49,8 @@ module.exports = Pratl =
 
   serialize: ->
     pratlViewState: @pratlView.serialize()
+
+  emergency: ->
+    @pratlTwit.tweet('I\'M WRITING CODEZ!!!!!!')
+
+  whatever: ->

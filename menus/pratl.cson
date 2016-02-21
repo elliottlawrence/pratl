@@ -2,8 +2,8 @@
 'context-menu':
   'atom-text-editor': [
     {
-      'label': 'Toggle pratl'
-      'command': 'pratl:toggle'
+      'label': 'Emergency Tweet!'
+      'command': 'pratl:emergency'
     }
   ]
 'menu': [
@@ -13,8 +13,8 @@
       'label': 'pratl'
       'submenu': [
         {
-          'label': 'Toggle'
-          'command': 'pratl:toggle'
+          'label': 'Emergency Tweet!'
+          'command': 'pratl:emergency'
         }
       ]
     ]
