@@ -4,9 +4,6 @@
   "version": "0.1.0",
   "description": "Let your friends know when you're writing code!",
   "keywords": [],
-  "activationCommands": {
-    "atom-workspace": "pratl:toggle"
-  },
   "repository": "https://github.com/elliottlawrence/pratl",
   "license": "MIT",
   "engines": {

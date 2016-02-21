@@ -26,14 +26,3 @@ module.exports = Pratl =
 
   serialize: ->
     pratlViewState: @pratlView.serialize()
-
-  toggle: ->
-    console.log 'Pratl was toggled!'
-
-    if @modalPanel.isVisible()
-      @modalPanel.hide()
-    else
-      editor = atom.workspace.getActiveTextEditor()
-      words = editor.getText().split(/\s+/).length
-      @pratlView.setCount(words)
-      @modalPanel.show()
