@@ -1,10 +1,9 @@
 {
   "name": "pratl",
   "main": "./lib/pratl",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Let your friends know when you're writing code!",
-  "keywords": [
-  ],
+  "keywords": [],
   "activationCommands": {
     "atom-workspace": "pratl:toggle"
   },
@@ -13,6 +12,5 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
