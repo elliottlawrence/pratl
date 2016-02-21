@@ -5,8 +5,10 @@ module.exports = Pratl =
   pratlView: null
   modalPanel: null
   subscriptions: null
+  editorData: null
 
   activate: (state) ->
+    @editorData = {}
     @pratlView = new PratlView(state.pratlViewState)
     @modalPanel = atom.workspace.addModalPanel(
       item: @pratlView.getElement(),
@@ -18,11 +20,22 @@ module.exports = Pratl =
 
     # Register command that toggles this view
     @subscriptions.add atom.commands.add 'atom-workspace', 'pratl:toggle': => @toggle()
-    @subscriptions.add atom.workspace.observeTextEditors (editor) ->
-      editor.onDidDestroy ->
+    @subscriptions.add atom.workspace.observeTextEditors (editor) =>
+      # Set initial line count
+      key = editor.getPath()
+      originalLineCount = editor.getLineCount()
+      @editorData.key = originalCount: originalLineCount, count: originalLineCount
+
+      editor.onDidDestroy =>
         console.log 'closed'
-      editor.onDidSave ->
-        console.log 'saved'
+      editor.onDidSave =>
+        oldLineCount = @editorData.key.count
+        currentLineCount = editor.getLineCount()
+
+        # TODO
+
+        @editorData.count = currentLineCount
+
 
   deactivate: ->
     @modalPanel.destroy()
