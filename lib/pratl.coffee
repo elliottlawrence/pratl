@@ -9,6 +9,15 @@ module.exports = Pratl =
   editorData: null
   pratlTwit: null
 
+  config:
+    twitterFriends:
+      title: 'Twitter Friends'
+      description: 'List of friends to mention in tweets'
+      type: 'array'
+      default: ['']
+      items:
+        type: 'string'
+
   activate: (state) ->
     @editorData = {}
     @pratlView = new PratlView(state.pratlViewState)

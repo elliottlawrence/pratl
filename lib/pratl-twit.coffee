@@ -14,5 +14,11 @@ module.exports =
         '🖕','👋','🙌','🐳','🍀','🎃','🌝','🍕','🍫','🏋','🏆','🎯','🚔','💡',
         '💙','💯','🆒','🗯','📢']
       emojiString = _.flatten((_.sample(emojis, 5) for i in [1..8])).join('')
-      @T.post 'statuses/update', status: text + ' ' + emojiString + '#pratl', (err, data, response) ->
+
+      friendsText = _.map(_.filter(atom.config.get 'pratl.twitterFriends', (s) -> s != ''),
+                           (s) -> "@#{s}"
+                      ).join(' ')
+      statusText = "#{text} #{emojiString} #pratl #{statusText}"
+
+      @T.post 'statuses/update', status: statusText, (err, data, response) ->
         console.log(data)
