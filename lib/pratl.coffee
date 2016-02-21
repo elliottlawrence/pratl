@@ -8,9 +8,12 @@ module.exports = Pratl =
 
   activate: (state) ->
     @pratlView = new PratlView(state.pratlViewState)
-    @modalPanel = atom.workspace.addModalPanel(item: @pratlView.getElement(), visible: false)
+    @modalPanel = atom.workspace.addModalPanel(
+      item: @pratlView.getElement(),
+      visible: false)
 
-    # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
+    # Events subscribed to in atom's system can be easily cleaned up with a
+    # CompositeDisposable
     @subscriptions = new CompositeDisposable
 
     # Register command that toggles this view
@@ -30,4 +33,7 @@ module.exports = Pratl =
     if @modalPanel.isVisible()
       @modalPanel.hide()
     else
+      editor = atom.workspace.getActiveTextEditor()
+      words = editor.getText().split(/\s+/).length
+      @pratlView.setCount(words)
       @modalPanel.show()
