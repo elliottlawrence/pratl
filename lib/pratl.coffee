@@ -19,7 +19,6 @@ module.exports = Pratl =
     @subscriptions = new CompositeDisposable
 
     # Register command that toggles this view
-    @subscriptions.add atom.commands.add 'atom-workspace', 'pratl:toggle': => @toggle()
     @subscriptions.add atom.workspace.observeTextEditors (editor) =>
       # Set initial line count
       key = editor.getPath()
@@ -35,7 +34,6 @@ module.exports = Pratl =
         # TODO
 
         @editorData[key].count = currentLineCount
-
 
   deactivate: ->
     @modalPanel.destroy()
