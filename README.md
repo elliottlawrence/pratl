@@ -1,5 +1,5 @@
 # pratl package
 
-A short description of your package.
+Pratl is a package for Atom that tweets updates about how much code you've written every time you save a file. If you need to let your friends know what you're up to between saves, there's also a menu option that allows you to send an "Emergency Tweet."
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+This project was written for UHack 2016.
